@@ -67,5 +67,5 @@ jobs:
           name: Run unit (React testing library, Jest) and integration/e2e (Cypress) tests
           command: | 
             docker-compose -f docker-compose.tests.yml logs
-            docker-compose -f docker-compose.tests.yml exec dac-portal npm run test-unit-front
-            docker-compose -f docker-compose.tests.yml exec dac-portal npm run cypress:run
+            docker-compose -f docker-compose.tests.yml exec dac-portal-frontend npm run test-unit-front
+            docker-compose -f docker-compose.tests.yml exec dac-portal-frontend npm run cypress:run
