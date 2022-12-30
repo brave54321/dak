@@ -46,9 +46,14 @@ jobs:
           name: Run DAC-Portal
           command: |
             sudo chmod -R 777 ./
-            docker-compose -f docker-compose.tests.yml up -d dac-portal
+            docker-compose -f docker-compose.tests.yml up -d dac-portal-frontend
             docker-compose -f docker-compose.tests.yml logs
             sleep 60
+      - run:
+          name: Start DAC-Portal-backend
+          command: |
+            docker-compose -f docker-compose.tests.yml up -d dac-portal-backend
+            docker-compose -f docker-compose.tests.yml logs
       - run:
           name: Start RabbitMQ
           command: |

@@ -1,20 +1,32 @@
-version: '3.7'
+version: '3'
+
 services:
-  dac-portal:
+  dac-portal-frontend:
     build:
       context: .
       dockerfile: Dockerfile.tests
     ports:
       - "3080:3080"
-      - "9090:9090"
     env_file:
       - .env
     depends_on:
       - mongo
       - keycloak
+  dac-portal-backend:
+    image: acavalls/ipc-dac-portal-backend:latest
+    container_name: ipc-dac-portal-backend-test    
+    ports:
+      - "9090:9090"
+    env_file:
+      - .env-dac-backend
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./test:/usr/src/app/test
+    depends_on:
+      - mongo
     networks:
       dac-network:
-        ipv4_address: 172.21.0.14
+        ipv4_address: 172.21.0.23
   permissions-api:
     image: acavalls/ipc-permissions-api:latest
     container_name: permissions-api-test
@@ -102,3 +114,4 @@ networks:
     ipam:
       config:
         - subnet: 172.21.0.0/24
+
