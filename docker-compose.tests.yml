@@ -12,6 +12,9 @@ services:
     depends_on:
       - mongo
       - keycloak
+    networks:
+      dac-network:
+        ipv4_address: 172.21.0.14
   dac-portal-backend:
     image: acavalls/ipc-dac-portal-backend:latest
     container_name: ipc-dac-portal-backend-test    
