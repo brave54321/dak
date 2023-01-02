@@ -5,6 +5,17 @@ workflows:
     jobs:
       - run-tests:
           name: test-dac
+      - hold:
+          type: approval
+          requires:
+            - test-dac
+      - publish:
+          requires:
+            - test-dac
+            - hold
+          filters:
+            branches:
+              only: master
 jobs:
   run-tests:
     machine:
