@@ -9,6 +9,10 @@ services:
       - "3080:3080"
     env_file:
       - .env
+    volumes:
+      - "./src:/app/src"
+      - "./cypress:/app/cypress"
+      - "./cypress.json:/app/cypress.json"
     depends_on:
       - mongo
       - keycloak
@@ -22,9 +26,6 @@ services:
       - "9090:9090"
     env_file:
       - .env-dac-backend
-    volumes:
-      - ./src:/usr/src/app/src
-      - ./test:/usr/src/app/test
     depends_on:
       - mongo
     networks:
