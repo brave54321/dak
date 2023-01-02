@@ -93,7 +93,7 @@ jobs:
           docker_layer_caching: false
       - run: 
           command: | 
-            TAG=0.1.168
+            TAG=0.1.169
             docker build -f Dockerfile.production -t acavalls/ipc-dac-portal:$TAG -t acavalls/ipc-dac-portal:latest .
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             docker push acavalls/ipc-dac-portal:$TAG
